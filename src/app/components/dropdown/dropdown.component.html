@@ -1,16 +1,21 @@
-<form class="select-date">
-    <h1>Seleccionar periodo</h1>
-    <mat-form-field appearance="fill">
-        <mat-label>Seleccionar</mat-label>
-        <mat-select [(ngModel)]="selectedValue" name="date">
-            <mat-option *ngFor="let date of dates" [value]="date.iframeUrl">
-                {{date.value}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-</form>
+<div class="main">
+    <form class="select-date">
+        <figcaption>
+            <h2>Selección de fecha</h2>
+            <div class="select-date__input">
+                <mat-form-field appearance="fill">
+                    <mat-label>Seleccionar</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="date">
+                        <mat-option *ngFor="let date of dates" [value]="date.iframeUrl">
+                            {{date.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </figcaption>
+    </form>
+</div>
 
-<!-- <p>{{selectedValue}}</p> -->
 <div *ngIf="selectedValue !== ''" class="embed-container">
-    <iframe [src]="selectedValue | safe:'resourceUrl'" frameborder="0" allowfullscreen></iframe>
+    <iframe scrolling="no" [src]="selectedValue | safe:'resourceUrl'" frameborder="0" allowfullscreen></iframe>
 </div>
