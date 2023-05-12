@@ -3,7 +3,7 @@
         <figcaption>
             <h2>Selección de fecha</h2>
             <div class="select-date__input">
-                <mat-form-field appearance="fill">
+                <mat-form-field class="blackArrowDD" appearance="fill">
                     <mat-label>Seleccionar</mat-label>
                     <mat-select [(ngModel)]="selectedValue" name="date">
                         <mat-option *ngFor="let date of dates" [value]="date.iframeUrl">
