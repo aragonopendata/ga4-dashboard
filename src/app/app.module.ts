@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SafePipe } from './pipes/safe.pipe';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SafePipe } from './pipes/safe.pipe';
     BrowserModule,
     BrowserAnimationsModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

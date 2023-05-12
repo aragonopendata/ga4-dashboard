@@ -113,6 +113,66 @@
     }
 }
 
+.opendata-links {
+    background-color: #f8fafd;
+    padding-bottom: 2em;
+}
+
+.opendata-visor {
+    max-width: 1110px;
+    margin: auto;
+    padding: 18px;
+    border: solid 1px #878787;
+    border-bottom: solid 4px #3e6d7e;
+    background-color: white;
+
+    .opendata-visor__title {
+        border-bottom: #3e6d7e solid 2px;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+    }
+
+    .opendata-visor__content {
+        display: flex;
+        justify-content: space-between;
+
+        .opendata-visor__content-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 0 0 70%;
+
+            ul li {
+                margin-bottom: 30px;
+                font-size: 1.1rem;
+                list-style: none;
+            }
+        }
+    }
+
+    a {
+        border: solid 1px #878787;
+        color: #333;
+        font-size: 1.1rem;
+        line-height: 2.2rem;
+        padding: 10px 20px;
+        text-decoration: none;
+
+        &:not(:last-child) {
+            margin-right: 1em;
+        }
+
+        &:hover {
+            background-color: #f7f7f7;
+            text-decoration: underline;
+        }
+
+        .mat-icon {
+            transform: translateY(5px);
+        }
+    }
+}
+
 
 @media screen and (min-width: 768px) {
     .main {

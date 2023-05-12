@@ -19,3 +19,42 @@
 <div *ngIf="selectedValue !== ''" class="embed-container">
     <iframe scrolling="no" [src]="selectedValue | safe:'resourceUrl'" frameborder="0" allowfullscreen></iframe>
 </div>
+
+<div class="opendata-links">
+    <div class="opendata-visor">
+        <h2 class="opendata-visor__title">
+            Descarga de datos abiertos
+        </h2>
+        <div class="opendata-visor__content">
+            <div class="opendata-visor__content-left">
+                <ul>
+                    <li>
+                        Total visitas por usuario único (Geolocalización):
+                        <a href="https://desopendata.aragon.es/gapi/export_countries?extension=csv&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
+                            target="_blank">CSV</a>
+                        <a href="https://desopendata.aragon.es/gapi/export_countries?extension=json&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
+                            target="_blank">JSON</a>
+                    </li>
+                    <li>
+                        Páginas más vistas (primer acceso):
+                        <a href="https://desopendata.aragon.es/gapi/export_pages?extension=csv&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
+                            target="_blank">CSV</a>
+                        <a href="https://desopendata.aragon.es/gapi/export_pages?extension=json&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
+                            target="_blank">JSON</a>
+                    </li>
+                    <li>
+                        Navegadores utilizados (primer acceso):
+                        <a href="https://desopendata.aragon.es/gapi/export_browsers?extension=csv&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
+                            target="_blank">CSV</a>
+                        <a href="https://desopendata.aragon.es/gapi/export_browsers?extension=json&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
+                            target="_blank">JSON</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="opendata-visor__content-right">
+                <a href="https://opendata.aragon.es/datos/catalogo/dataset/estadisticas-de-uso-de-los-portales-y-webs-mas-importantes-del-gobierno-de-aragon"
+                    target="_blank"><mat-icon> insert_chart_outlined</mat-icon> Estadísticas de años anteriores</a>
+            </div>
+        </div>
+    </div>
+</div>
