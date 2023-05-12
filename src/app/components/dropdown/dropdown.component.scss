@@ -31,9 +31,21 @@
             }
         }
     }
+
+    .blackArrowDD {
+        background: url("../../../assets/images/downArrow.svg") no-repeat;
+        background-position: 95%;
+        background-size: 4%;
+    }
+
 }
 
+
 ::ng-deep {
+
+    .mat-mdc-select-arrow {
+        display: none !important;
+    }
 
     .mat-mdc-text-field-wrapper.mdc-text-field.ng-tns-c4276651467-0.mdc-text-field--filled {
         margin-left: 12px;
