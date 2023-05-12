@@ -33,6 +33,37 @@
     }
 }
 
+::ng-deep {
+
+    .mat-mdc-text-field-wrapper.mdc-text-field.ng-tns-c4276651467-0.mdc-text-field--filled {
+        margin-left: 12px;
+        font-size: 14px;
+        border-radius: 6px;
+        background-color: #fbfcfd;
+    }
+
+    .mat-mdc-select-value {
+        color: #69707d;
+    }
+
+    .mdc-text-field:hover:not(.mdc-text-field--disabled) {
+        background-color: transparent !important;
+        color: #69707d;
+    }
+
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple {
+
+        &::before,
+        &::after {
+            display: none;
+        }
+
+        &:hover {
+            background-color: #f8fafd;
+        }
+    }
+}
+
 
 
 .embed-container {
