@@ -1,4 +1,9 @@
 .main {
+
+    & *:hover {
+        background-color: transparent;
+    }
+
     background-color: #f8fafd;
     display: flex;
     width: 100%;
@@ -35,11 +40,30 @@
 
 ::ng-deep {
 
+    .mat-mdc-select-arrow {
+        background-image: url('/assets/arrow.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 17px !important;
+        height: 12px !important;
+        transform: translateX(6px);
+    }
+
+    .mat-mdc-select-arrow svg {
+        display: none;
+    }
+
+    .mat-mdc-form-field-focus-overlay {
+        background-color: #f8fafd !important;
+    }
+
     .mat-mdc-text-field-wrapper.mdc-text-field.ng-tns-c4276651467-0.mdc-text-field--filled {
         margin-left: 12px;
         font-size: 14px;
         border-radius: 6px;
-        background-color: #fbfcfd;
+        background-color: #fbfcfd !important;
+        box-shadow: 0 0 transparent, inset 0 0 0 1px rgba(17, 43, 134, .1);
     }
 
     .mat-mdc-select-value {
