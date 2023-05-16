@@ -5,8 +5,9 @@
             <div class="select-date__input">
                 <mat-form-field appearance="fill">
                     <mat-label>Seleccionar</mat-label>
-                    <mat-select [(ngModel)]="selectedValue" name="date">
-                        <mat-option *ngFor="let date of dates" [value]="date.iframeUrl">
+                    <mat-select [(ngModel)]="selectedValue" (selectionChange)="changePortal($event.value.urlSnippet)"
+                        name="date">
+                        <mat-option *ngFor="let date of dates" [value]="date">
                             {{date.value}}
                         </mat-option>
                     </mat-select>
@@ -15,9 +16,28 @@
         </figcaption>
     </form>
 </div>
+<div class="main">
+    <form class="select-date">
+        <figcaption>
+            <h2>Selección de portal</h2>
+            <div class="select-date__input">
+                <mat-form-field appearance="fill">
+                    <mat-label>Seleccionar</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" (selectionChange)="changePortal($event.value.urlSnippet)"
+                        name="date">
+                        <mat-option *ngFor="let portal of portals" [value]="portal">
+                            {{portal.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </figcaption>
+    </form>
+</div>
 
-<div *ngIf="selectedValue !== ''" class="embed-container">
-    <iframe scrolling="no" [src]="selectedValue | safe:'resourceUrl'" frameborder="0" allowfullscreen></iframe>
+<div *ngIf="selectedValue.iframeUrl!== ''" class="embed-container">
+    <iframe id="myiframe" scrolling="no" [src]="selectedValue.iframeUrl | safe:'resourceUrl'" frameborder="0"
+        allowfullscreen></iframe>
 </div>
 
 <div class="opendata-links">
@@ -58,3 +78,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    var iframe = document.getElementById("myiframe");
+    iframe.width = iframe.contentWindow.document.body.scrollWidth;
+    iframe.height = iframe.contentWindow.document.body.scrollHeight;
+    setInterval(function () {
+        iframe.height = iframe.contentWindow.document.body.scrollHeight;
+    }, 10);
+</script>
