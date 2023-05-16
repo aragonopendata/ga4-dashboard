@@ -15,6 +15,10 @@ interface URLBuilder {
 
 
 export class DropdownComponent {
+  //"https://desopendataei2a.aragon.es/cobertura/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/a0c4c7f0-f2fa-11ed-8596-6dee554197cb?embed=true&_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es)))),refreshInterval:(pause:!t,value:0),time:(from:now-30d%2Fd,to:now))&hide-filter-bar=true"
+
+  baseUrl: string = 'https://desopendataei2a.aragon.es/cobertura/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/ad4977e0-cf06-11ed-91b6-b3f4561f6def?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A';
+  endUrl: string = ')&hide-filter-bar=true%22';
 
   urlHead: string = environment.baseUrl
   urlBody: string = ",refreshInterval:(pause:!t,value:0),";
@@ -24,10 +28,11 @@ export class DropdownComponent {
   selectedDate: string = 'time:(from%3Anow-30d%2Fd%2Cto%3Anow))';
 
   changePortal(newPortal: any) {
-    console.log(newPortal)
+    //this.selectedValue = newPortal.iframeUrl;
     this.selectedPortal = newPortal;
   }
-  changeDate(newDate: string) {
+  changeDate(newDate: any) {
+    //this.selectedValue = newDate.iframeUrl;
     this.selectedDate = newDate;
   }
 
