@@ -15,16 +15,14 @@
             </div>
         </figcaption>
     </form>
-</div>
-<div class="main">
-    <form class="select-date">
+    <form class="select-portal">
         <figcaption>
             <h2>Selección de portal</h2>
-            <div class="select-date__input">
+            <div class="select-portal__input">
                 <mat-form-field appearance="fill">
                     <mat-label>Seleccionar</mat-label>
                     <mat-select [(ngModel)]="selectedValue" (selectionChange)="changePortal($event.value.urlSnippet)"
-                        name="date">
+                        name="portal">
                         <mat-option *ngFor="let portal of portals" [value]="portal">
                             {{portal.value}}
                         </mat-option>
@@ -34,6 +32,9 @@
         </figcaption>
     </form>
 </div>
+<!-- <div class="main">
+
+</div> -->
 
 <div *ngIf="selectedValue.iframeUrl!== ''" class="embed-container">
     <iframe id="myiframe" scrolling="no" [src]="selectedValue.iframeUrl | safe:'resourceUrl'" frameborder="0"

@@ -1,7 +1,12 @@
 @media screen and (max-width: 480px) {
+
     .main {
-        .select-date {
-            .select-date__input {
+
+        .select-date,
+        .select-portal {
+
+            .select-date__input,
+            .select-portal__input {
 
                 mat-form-field {
                     width: 320px !important;
@@ -11,21 +16,25 @@
     }
 }
 
-.main {
 
-    background-color: #f8fafd;
+
+.main {
+    background-color: white;
     display: flex;
     width: 100%;
     position: relative;
     transition: all 200ms ease;
+    margin: 2em auto .2em auto;
+    // width: 97%;
+    // flex: 0 0 45%;
+    height: 150px;
+    border-radius: 6px;
+    box-shadow: 0 .9px 4px -1px rgba(0, 0, 0, .08), 0 2.6px 8px -1px rgba(0, 0, 0, .06), 0 5.7px 12px -1px rgba(0, 0, 0, .05), 0 15px 15px -1px rgba(0, 0, 0, .04);
 
-    .select-date {
-        margin: 2em auto .2em auto;
-        width: 97%;
-        height: 150px;
-        background-color: white;
-        border-radius: 6px;
-        box-shadow: 0 .9px 4px -1px rgba(0, 0, 0, .08), 0 2.6px 8px -1px rgba(0, 0, 0, .06), 0 5.7px 12px -1px rgba(0, 0, 0, .05), 0 15px 15px -1px rgba(0, 0, 0, .04);
+    .select-date,
+    .select-portal {
+        flex: 0 0 45%;
+
 
         h2 {
             margin: 0;
@@ -34,7 +43,8 @@
             padding-left: 8px;
         }
 
-        .select-date__input {
+        .select-date__input,
+        .select-portal__input {
             margin-top: 1.7em;
 
             mat-form-field {
@@ -46,6 +56,14 @@
         }
     }
 }
+
+@media screen and (max-width:1296px) {
+    .main {
+        flex-direction: column;
+        height: fit-content;
+    }
+}
+
 
 ::ng-deep {
 
@@ -67,7 +85,7 @@
         background-color: #f8fafd !important;
     }
 
-    .mat-mdc-text-field-wrapper.mdc-text-field.ng-tns-c4276651467-0.mdc-text-field--filled {
+    .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
         margin-left: 12px;
         font-size: 14px;
         border-radius: 6px;
@@ -176,10 +194,13 @@
 
 @media screen and (min-width: 768px) {
     .main {
-        .select-date {
-            width: 65.5%;
-            transform: translateX(2.8%);
-        }
+        z-index: 99;
+        // max-width: 706px;
+        margin: auto;
+        margin-top: 2em;
+
+        width: 65.5%;
+        transform: translateX(2.8%);
     }
 
     .embed-container {
@@ -191,13 +212,8 @@
 
 @media screen and (min-width: 1600px) {
     .main {
-        .select-date {
-            width: 66%;
-            transform: translateX(2.8%);
-        }
-    }
-
-    .embed-container {
-        //height: 280vh;
+        max-width: 1120px;
+        width: 66%;
+        transform: translateX(2.9%);
     }
 }
