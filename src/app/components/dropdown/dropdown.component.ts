@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { find } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 interface URLBuilder {
@@ -15,7 +16,6 @@ interface URLBuilder {
 
 
 export class DropdownComponent {
-  //"https://desopendataei2a.aragon.es/cobertura/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/a0c4c7f0-f2fa-11ed-8596-6dee554197cb?embed=true&_g=(filters:!(('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es)))),refreshInterval:(pause:!t,value:0),time:(from:now-30d%2Fd,to:now))&hide-filter-bar=true"
 
   baseUrl: string = 'https://desopendataei2a.aragon.es/cobertura/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/ad4977e0-cf06-11ed-91b6-b3f4561f6def?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A';
   endUrl: string = ')&hide-filter-bar=true%22';
@@ -25,15 +25,20 @@ export class DropdownComponent {
   urlTail: string = ")&hide-filter-bar=true";
 
   selectedPortal: string = '(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))';
-  selectedDate: string = 'time:(from%3Anow-30d%2Fd%2Cto%3Anow))';
+  selectedDate: string = 'time:(from%3Anow-30d%2Fd%2Cto%3Anow)';
 
   changePortal(newPortal: any) {
-    //this.selectedValue = newPortal.iframeUrl;
-    this.selectedPortal = newPortal;
+    var tmpIndex = this.portals.findIndex(x => x.urlSnippet === this.selectedPortal);
+    this.selectedPortal = newPortal.urlSnippet;
+    this.portals[tmpIndex].iframeUrl = `${this.urlHead}${this.selectedPortal}${this.urlBody}${this.selectedDate}${this.urlTail}`
+
   }
+
   changeDate(newDate: any) {
-    //this.selectedValue = newDate.iframeUrl;
     this.selectedDate = newDate;
+    var tmpIndex = this.dates.findIndex(x => x.urlSnippet === this.selectedDate);
+    this.dates[tmpIndex].iframeUrl = `${this.urlHead}${this.selectedPortal}${this.urlBody}${this.selectedDate}${this.urlTail}`
+
   }
 
   dates: URLBuilder[] = [
@@ -48,9 +53,10 @@ export class DropdownComponent {
   ];
 
   portals: URLBuilder[] = [
-    { value: 'presupuestos.aragon.es', iframeUrl: `${this.urlHead}(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: '(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))' },
+    { value: 'presupuesto.aragon.es', iframeUrl: `${this.urlHead}(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: `(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))` },
   ];
-
 
   selectedValue: URLBuilder = { value: "", iframeUrl: this.dates[1].iframeUrl, urlSnippet: "" };
 }
+
+
