@@ -27,18 +27,21 @@ export class DropdownComponent {
   selectedPortal: string = '(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))';
   selectedDate: string = 'time:(from%3Anow-30d%2Fd%2Cto%3Anow)';
 
-  changePortal(newPortal: any) {
-    var tmpIndex = this.portals.findIndex(x => x.urlSnippet === this.selectedPortal);
-    this.selectedPortal = newPortal.urlSnippet;
-    this.portals[tmpIndex].iframeUrl = `${this.urlHead}${this.selectedPortal}${this.urlBody}${this.selectedDate}${this.urlTail}`
+  placeholderTextDate: string = '30 Días';
+  placeholderTextPortal: string = 'Todos';
 
+  changePortal(newPortal: any) {
+    this.selectedPortal = newPortal.urlSnippet;
+    this.placeholderTextPortal = newPortal.value;
+    var tmpIndex = this.portals.findIndex(x => x.urlSnippet === this.selectedPortal);
+    this.portals[tmpIndex].iframeUrl = `${this.urlHead}${this.selectedPortal}${this.urlBody}${this.selectedDate}${this.urlTail}`
   }
 
   changeDate(newDate: any) {
-    this.selectedDate = newDate;
+    this.selectedDate = newDate.urlSnippet;
+    this.placeholderTextDate = newDate.value;
     var tmpIndex = this.dates.findIndex(x => x.urlSnippet === this.selectedDate);
     this.dates[tmpIndex].iframeUrl = `${this.urlHead}${this.selectedPortal}${this.urlBody}${this.selectedDate}${this.urlTail}`
-
   }
 
   dates: URLBuilder[] = [

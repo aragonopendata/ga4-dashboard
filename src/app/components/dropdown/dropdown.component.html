@@ -4,8 +4,8 @@
             <h2>Selección de fecha</h2>
             <div class="select-date__input">
                 <mat-form-field appearance="fill">
-                    <mat-select [(ngModel)]="selectedValue" (selectionChange)="changeDate($event.value.urlSnippet)"
-                        [placeholder]="'30 Días'" name="date">
+                    <mat-select [(ngModel)]="selectedValue" (selectionChange)="changeDate($event.value)"
+                        [placeholder]="placeholderTextDate" name="date">
                         <mat-option *ngFor="let date of dates" [value]="date">
                             {{date.value}}
                         </mat-option>
@@ -20,7 +20,7 @@
             <div class="select-portal__input">
                 <mat-form-field appearance="fill">
                     <mat-select [(ngModel)]="selectedValue" (selectionChange)="changePortal($event.value)"
-                        [placeholder]="'Todos'" name="portal">
+                        [placeholder]="placeholderTextPortal" name="portal">
                         <mat-option *ngFor="let portal of portals" [value]="portal">
                             {{portal.value}}
                         </mat-option>
