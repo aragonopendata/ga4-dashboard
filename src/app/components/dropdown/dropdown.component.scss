@@ -204,16 +204,37 @@
     }
 
     .embed-container {
-        height: 350vh;
+        height: 380vh;
     }
 
 
 }
 
+@media screen and (min-width: 861px) {
+
+    .embed-container {
+        height: 280vh;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    .embed-container {
+        height: 250vh;
+    }
+}
+
+
 @media screen and (min-width: 1600px) {
-    .main {
+
+    .main,
+    .opendata-visor {
         max-width: 1347px;
         width: 66%;
         transform: translateX(3%);
+    }
+
+    .embed-container {
+        height: 200vh;
     }
 }
