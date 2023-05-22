@@ -150,8 +150,10 @@
         margin-bottom: 30px;
     }
 
+
     .opendata-visor__content {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
 
         .opendata-visor__content-left {
@@ -167,6 +169,7 @@
             }
         }
     }
+
 
     a {
         border: solid 1px #878787;
@@ -193,6 +196,7 @@
 
 
 @media screen and (min-width: 768px) {
+
     .main {
         z-index: 99;
         // max-width: 706px;
@@ -207,6 +211,12 @@
         height: 380vh;
     }
 
+    .opendata-visor {
+        .opendata-visor__content {
+            flex-direction: row;
+        }
+
+    }
 
 }
 
