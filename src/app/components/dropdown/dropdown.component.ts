@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { find } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -15,7 +15,15 @@ interface URLBuilder {
 })
 
 
-export class DropdownComponent {
+export class DropdownComponent implements OnInit {
+
+  ngOnInit(): void {
+    var intervalfunc = this.updateIframeHeight
+    setInterval(function () {
+      intervalfunc
+    }, 100)
+
+  }
 
   baseUrl: string = 'https://desopendataei2a.aragon.es/cobertura/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/ad4977e0-cf06-11ed-91b6-b3f4561f6def?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A';
   endUrl: string = ')&hide-filter-bar=true%22';
@@ -29,6 +37,13 @@ export class DropdownComponent {
 
   placeholderTextDate: string = '30 Días';
   placeholderTextPortal: string = 'Todos';
+
+  iframe: any = document.getElementById("myiframe");
+
+  updateIframeHeight() {
+    this.iframe.height = this.iframe.contentWindow.document.body.scrollHeight;
+
+  }
 
   changePortal(newPortal: any) {
     this.selectedPortal = newPortal.urlSnippet;
