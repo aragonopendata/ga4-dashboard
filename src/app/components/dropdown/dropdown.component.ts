@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { find } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from 'src/app/services/security/authentication.service';
+import { LoginService } from 'src/app/services/security/login.service';
 
 interface URLBuilder {
   value: string;
@@ -16,6 +18,8 @@ interface URLBuilder {
 
 
 export class DropdownComponent implements OnInit {
+
+  constructor(private authenticationService: AuthenticationService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     var intervalfunc = this.updateIframeHeight
@@ -39,6 +43,13 @@ export class DropdownComponent implements OnInit {
   placeholderTextPortal: string = 'Todos';
 
   iframe: any = document.getElementById("myiframe");
+
+  //Login
+  user: any;
+  error: string = '';
+  isDataset: boolean = false;
+  isOrg: boolean = false;
+  model: any = {};
 
   updateIframeHeight() {
     this.iframe.height = this.iframe.contentWindow.document.body.scrollHeight;
@@ -75,6 +86,26 @@ export class DropdownComponent implements OnInit {
   ];
 
   selectedValue: URLBuilder = { value: "", iframeUrl: this.dates[1].iframeUrl, urlSnippet: "" };
+
+  login() {
+    this.authenticationService.login(this.model.username, this.model.password).subscribe(result => {
+      if (result === true) {
+        // login successful
+        this.announce();
+        this.user = this.authenticationService.getCurrentUser();
+      } else {
+        // login failed
+        this.error = 'Usuario o password incorrecto';
+      }
+    });
+  }
+
+  announce() {
+    let currentUser = localStorage.getItem('currentUser');
+    if (currentUser && currentUser.token) {
+      return this.loginService.announceLogin(currentUser);
+    }
+  }
 }
 
 
