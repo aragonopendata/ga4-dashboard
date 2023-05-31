@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { find } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 interface URLBuilder {
   value: string;
   iframeUrl: string;
@@ -17,23 +16,54 @@ interface URLBuilder {
 
 export class DropdownComponent implements OnInit {
 
-  ngOnInit(): void {
+  constructor(private readonly http:HttpClient) { }
+
+  ngOnInit() {
     var intervalfunc = this.updateIframeHeight
     setInterval(function () {
       intervalfunc
     }, 100)
+    this.getPortals();
+
 
   }
+  getPortals(){
+    const headers = { 'Content-Type': 'application/json'};
+    const body = {'username':environment.AODBACK_USER, 'password':environment.AODBACK_PASS}
+     this.http.post<any>(environment.AODBACK_AUTH_ENDPOINT, body, { headers }).subscribe(data => {
+       
+       const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': data.token
+        })
+      };
+  
+      return this.http.get<any>(environment.AODBACK_LOGSTASH_ENDPOINT,httpOptions).subscribe(data => {
+        this.parsePortals(data.message) 
+      });
+    });
+  }
 
-  baseUrl: string = 'https://desopendataei2a.aragon.es/cobertura/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/ad4977e0-cf06-11ed-91b6-b3f4561f6def?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A';
-  endUrl: string = ')&hide-filter-bar=true%22';
+  parsePortals(data: any)
+  {
+    this.portals.push(    { value: "Todos", iframeUrl: `${this.urlHead}${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: "" });
+
+    data.forEach((element: any) => { 
+      if (element.status == 1){
+        this.portals.push({value: element.url, iframeUrl: `${this.urlHead}('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:${element.url}),type:phrase),query:(match_phrase:(portal:${element.url})))${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: `('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:${element.url}),type:phrase),query:(match_phrase:(portal:${element.url})))` });
+      }
+    });
+  }
+ 
 
   urlHead: string = environment.baseUrl
-  urlBody: string = ",refreshInterval:(pause:!t,value:0),";
+  urlBody: string = "),refreshInterval:(pause:!t,value:0),";
   urlTail: string = ")&hide-filter-bar=true";
 
-  selectedPortal: string = '(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))';
+  
   selectedDate: string = 'time:(from%3Anow-30d%2Fd%2Cto%3Anow)';
+  selectedPortal: string = '';
 
   placeholderTextDate: string = '30 Días';
   placeholderTextPortal: string = 'Todos';
@@ -71,9 +101,7 @@ export class DropdownComponent implements OnInit {
   ];
 
   portals: URLBuilder[] = [
-    { value: 'presupuesto.aragon.es', iframeUrl: `${this.urlHead}(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: `(query:presupuesto.aragon.es),type:phrase),query:(match_phrase:(portal:presupuesto.aragon.es))))` },
   ];
-
   selectedValue: URLBuilder = { value: "", iframeUrl: this.dates[1].iframeUrl, urlSnippet: "" };
 }
 
