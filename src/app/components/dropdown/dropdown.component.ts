@@ -29,21 +29,11 @@ export class DropdownComponent implements OnInit {
   }
   getPortals(){
     const headers = { 'Content-Type': 'application/json'};
-    const body = {'username':environment.AODBACK_USER, 'password':environment.AODBACK_PASS}
-     this.http.post<any>(environment.AODBACK_AUTH_ENDPOINT, body, { headers }).subscribe(data => {
-       
-       const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': data.token
-        })
-      };
   
-      return this.http.get<any>(environment.AODBACK_LOGSTASH_ENDPOINT,httpOptions).subscribe(data => {
+      return this.http.get<any>(environment.AODBACK_LOGSTASH_ENDPOINT,{headers}).subscribe(data => {
         this.parsePortals(data.message) 
       });
-    });
-  }
+    }
 
   parsePortals(data: any)
   {
