@@ -40,7 +40,7 @@ export class DropdownComponent implements OnInit {
     this.portals.push(    { value: "Todos", iframeUrl: `${this.urlHead}${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: "" });
 
     data.forEach((element: any) => { 
-      if (element.status == 1){
+      if (element.status == 1 && element.type == 'analytics_GA4'){
         this.portals.push({value: element.url, iframeUrl: `${this.urlHead}('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:${element.url}),type:phrase),query:(match_phrase:(portal:${element.url})))${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: `('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:${element.url}),type:phrase),query:(match_phrase:(portal:${element.url})))` });
       }
     });
