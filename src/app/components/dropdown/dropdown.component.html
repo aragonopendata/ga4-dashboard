@@ -49,24 +49,42 @@
                 <ul>
                     <li>
                         Total visitas por usuario único (Geolocalización):
-                        <a href="https://desopendata.aragon.es/gapi/export_countries?extension=csv&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
+                        <a *ngIf="selected_portal_id!=0;else noportalCSVCountries" href="{{environment.environment_host+'/gapiv2/export_countries?extension=csv&days=now/y&portal='+selected_portal_id}}"
                             target="_blank">CSV</a>
-                        <a href="https://desopendata.aragon.es/gapi/export_countries?extension=json&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
+                            <ng-template #noportalCSVCountries>
+                                <a href="{{environment.environment_host+'/gapiv2/export_countries?extension=csv&days=now/y'}}" target="_blank"> CSV </a>
+                            </ng-template>
+                        <a *ngIf="selected_portal_id!=0;else noportalJSONCountries" href="{{environment.environment_host+'/gapiv2/export_countries?extension=json&days=now/y&portal='+selected_portal_id}}"
                             target="_blank">JSON</a>
+                            <ng-template #noportalJSONCountries>
+                                <a href="{{environment.environment_host+'/gapiv2/export_countries?extension=json&days=now/y'}}" target="_blank"> JSON </a>
+                            </ng-template>
                     </li>
                     <li>
                         Páginas más vistas (primer acceso):
-                        <a href="https://desopendata.aragon.es/gapi/export_pages?extension=csv&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
-                            target="_blank">CSV</a>
-                        <a href="https://desopendata.aragon.es/gapi/export_pages?extension=json&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
-                            target="_blank">JSON</a>
+                        <a *ngIf="selected_portal_id!=0;else noportalCSVPages" href="{{environment.environment_host+'/gapiv2/export_pages?extension=csv&days=now/y&portal='+selected_portal_id}}"
+                        target="_blank">CSV</a>
+                            <ng-template #noportalCSVPages>
+                                <a href="{{environment.environment_host+'/gapiv2/export_pages?extension=csv&days=now/y'}}" target="_blank"> CSV </a>
+                            </ng-template>
+                        <a *ngIf="selected_portal_id!=0;else noportalJSONPages" href="{{environment.environment_host+'/gapiv2/export_pages?extension=json&days=now/y&portal='+selected_portal_id}}"
+                        target="_blank">JSON</a>
+                            <ng-template #noportalJSONPages>
+                                <a href="{{environment.environment_host+'/gapiv2/export_pages?extension=json&days=now/y'}}" target="_blank"> JSON </a>
+                            </ng-template>
                     </li>
                     <li>
                         Navegadores utilizados (primer acceso):
-                        <a href="https://desopendata.aragon.es/gapi/export_browsers?extension=csv&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
-                            target="_blank">CSV</a>
-                        <a href="https://desopendata.aragon.es/gapi/export_browsers?extension=json&portal=160&portal=162&portal=163&portal=164&portal=165&portal=166&portal=173&portal=151&portal=168&portal=169&portal=171&days=now%2Fy"
-                            target="_blank">JSON</a>
+                        <a *ngIf="selected_portal_id!=0;else noportalCSVBrowsers" href="{{environment.environment_host+'/gapiv2/export_browsers?extension=csv&days=now/y&portal='+selected_portal_id}}"
+                        target="_blank">CSV</a>
+                            <ng-template #noportalCSVBrowsers>
+                                <a href="{{environment.environment_host+'/gapiv2/export_browsers?extension=csv&days=now/y'}}" target="_blank"> CSV </a>
+                            </ng-template>
+                        <a *ngIf="selected_portal_id!=0;else noportalJSONBrowsers" href="{{environment.environment_host+'/gapiv2/export_browsers?extension=json&days=now/y&portal='+selected_portal_id}}"
+                        target="_blank">JSON</a>
+                            <ng-template #noportalJSONBrowsers>
+                                <a href="{{environment.environment_host+'/gapiv2/export_browsers?extension=json&days=now/y'}}" target="_blank"> JSON </a>
+                            </ng-template>
                     </li>
                 </ul>
             </div>
