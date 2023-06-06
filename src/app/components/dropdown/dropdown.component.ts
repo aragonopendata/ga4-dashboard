@@ -21,7 +21,7 @@ export class DropdownComponent implements OnInit {
   constructor(private readonly http:HttpClient) { }
 
   ngOnInit() {
-    var intervalfunc = this.updateIframeHeight
+    var intervalfunc = this.updateIframeHeight();
     setInterval(function () {
       intervalfunc
     }, 100)
