@@ -18,57 +18,63 @@ export class DropdownComponent implements OnInit {
 
   environment = environment;
 
-  constructor(private readonly http:HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   ngOnInit() {
-    var intervalfunc = this.updateIframeHeight
-    setInterval(function () {
-      intervalfunc
-    }, 100)
+
+    this.updateIframeHeight()
+
     this.getPortals();
-
-
   }
-  getPortals(){
-    const headers = { 'Content-Type': 'application/json'};
-  
-      return this.http.get<any>(environment.AODBACK_LOGSTASH_ENDPOINT,{headers}).subscribe(data => {
-        this.parsePortals(data.message) 
-      });
-    }
 
-  parsePortals(data: any)
-  {
-    this.portals.push(    { value: "Todos", iframeUrl: `${this.urlHead}${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: "" });
+  getPortals() {
+    const headers = { 'Content-Type': 'application/json' };
+
+    return this.http.get<any>(environment.AODBACK_LOGSTASH_ENDPOINT, { headers }).subscribe(data => {
+      this.parsePortals(data.message)
+    });
+  }
+
+  parsePortals(data: any) {
+    this.portals.push({ value: "Todos", iframeUrl: `${this.urlHead}${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: "" });
     this.all_portals_id.push(0)
-   
 
-    data.forEach((element: any) => { 
-      if (element.status == 1 && element.type == 'analytics_GA4'){
-        this.portals.push({value: element.portal_name, iframeUrl: `${this.urlHead}('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(view:${element.view}),type:phrase),query:(match_phrase:(view:${element.view})))${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: `('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:${element.url}),type:phrase),query:(match_phrase:(portal:${element.url})))` });
+
+    data.forEach((element: any) => {
+      if (element.status == 1 && element.type == 'analytics_GA4') {
+        this.portals.push({ value: element.portal_name, iframeUrl: `${this.urlHead}('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(view:${element.view}),type:phrase),query:(match_phrase:(view:${element.view})))${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: `('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:${element.url}),type:phrase),query:(match_phrase:(portal:${element.url})))` });
         this.all_portals_id.push(element.id_logstash)
       }
-      
+
     });
-    
+
   }
- 
+
+
+
 
   urlHead: string = environment.baseUrl
   urlBody: string = "),refreshInterval:(pause:!t,value:0),";
   urlTail: string = ")&hide-filter-bar=true";
 
-  
+
   selectedDate: string = 'time:(from%3Anow-30d%2Fd%2Cto%3Anow)';
   selectedPortal: string = '';
 
   placeholderTextDate: string = '30 Días';
   placeholderTextPortal: string = 'Todos';
 
-  iframe: any = document.getElementById("myiframe");
+
 
   updateIframeHeight() {
-    this.iframe.height = this.iframe.contentWindow.document.body.scrollHeight;
+    var intervalId = setInterval(function () {
+      var iframeContainer: any = document.getElementsByClassName("embed-container")[0];
+      var iframe: any = document.getElementById("myiframe");
+      //iframeContainer.style.height = "300vh"
+      console.log(iframe.contentWindow);
+
+    }, 2000);
+
 
   }
 
@@ -85,6 +91,24 @@ export class DropdownComponent implements OnInit {
     this.placeholderTextDate = newDate.value;
     var tmpIndex = this.dates.findIndex(x => x.urlSnippet === this.selectedDate);
     this.dates[tmpIndex].iframeUrl = `${this.urlHead}${this.selectedPortal}${this.urlBody}${this.selectedDate}${this.urlTail}`
+  }
+
+  reloadDash() {
+    console.log("reloading")
+    this.selectedValue.iframeUrl = ``;
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .getRegistrations()
+        .then(function (registrations) {
+          for (let registration of registrations) {
+            registration.unregister()
+          }
+        })
+    }
+    setTimeout(() => {
+      this.selectedValue.iframeUrl = `${this.urlHead}${this.selectedPortal}${this.urlBody}${this.selectedDate}${this.urlTail}`;
+
+    }, 1);
   }
 
   dates: URLBuilder[] = [
