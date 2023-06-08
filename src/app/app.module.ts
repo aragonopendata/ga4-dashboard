@@ -8,6 +8,8 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SafePipe } from './pipes/safe.pipe';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
@@ -22,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     FormsModule,
     MatIconModule,
+    MatButtonModule,
+    MatDividerModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

@@ -29,12 +29,15 @@
             </div>
         </figcaption>
     </form>
+    <div class="reload_container">
+        <button mat-stroked-button class="table_reload" (click)="reloadDash()">Recargar tabla</button>
+    </div>
 </div>
 <!-- <div class="main">
 
 </div> -->
 
-<div *ngIf="selectedValue.iframeUrl!== ''" class="embed-container">
+<div class="embed-container">
     <iframe id="myiframe" scrolling="no" [src]="selectedValue.iframeUrl | safe:'resourceUrl'" frameborder="0"
         allowfullscreen></iframe>
 </div>
@@ -49,47 +52,66 @@
                 <ul>
                     <li>
                         Total visitas por usuario único (Geolocalización):
-                        <a *ngIf="selected_portal_id!=0;else noportalCSVCountries" href="{{environment.environment_host+'/gapiv2/export_countries?extension=csv&days=now/y&portal='+selected_portal_id}}"
+                        <a mat-stroked-button *ngIf="selected_portal_id!=0;else noportalCSVCountries"
+                            href="{{environment.environment_host+'/gapiv2/export_countries?extension=csv&days=now/y&portal='+selected_portal_id}}"
                             target="_blank">CSV</a>
-                            <ng-template #noportalCSVCountries>
-                                <a href="{{environment.environment_host+'/gapiv2/export_countries?extension=csv&days=now/y'}}" target="_blank"> CSV </a>
-                            </ng-template>
-                        <a *ngIf="selected_portal_id!=0;else noportalJSONCountries" href="{{environment.environment_host+'/gapiv2/export_countries?extension=json&days=now/y&portal='+selected_portal_id}}"
+                        <ng-template #noportalCSVCountries>
+                            <a mat-stroked-button
+                                href="{{environment.environment_host+'/gapiv2/export_countries?extension=csv&days=now/y'}}"
+                                target="_blank"> CSV </a>
+                        </ng-template>
+                        <a mat-stroked-button *ngIf="selected_portal_id!=0;else noportalJSONCountries"
+                            href="{{environment.environment_host+'/gapiv2/export_countries?extension=json&days=now/y&portal='+selected_portal_id}}"
                             target="_blank">JSON</a>
-                            <ng-template #noportalJSONCountries>
-                                <a href="{{environment.environment_host+'/gapiv2/export_countries?extension=json&days=now/y'}}" target="_blank"> JSON </a>
-                            </ng-template>
+                        <ng-template #noportalJSONCountries>
+                            <a mat-stroked-button
+                                href="{{environment.environment_host+'/gapiv2/export_countries?extension=json&days=now/y'}}"
+                                target="_blank"> JSON </a>
+                        </ng-template>
                     </li>
                     <li>
                         Páginas más vistas (primer acceso):
-                        <a *ngIf="selected_portal_id!=0;else noportalCSVPages" href="{{environment.environment_host+'/gapiv2/export_pages?extension=csv&days=now/y&portal='+selected_portal_id}}"
-                        target="_blank">CSV</a>
-                            <ng-template #noportalCSVPages>
-                                <a href="{{environment.environment_host+'/gapiv2/export_pages?extension=csv&days=now/y'}}" target="_blank"> CSV </a>
-                            </ng-template>
-                        <a *ngIf="selected_portal_id!=0;else noportalJSONPages" href="{{environment.environment_host+'/gapiv2/export_pages?extension=json&days=now/y&portal='+selected_portal_id}}"
-                        target="_blank">JSON</a>
-                            <ng-template #noportalJSONPages>
-                                <a href="{{environment.environment_host+'/gapiv2/export_pages?extension=json&days=now/y'}}" target="_blank"> JSON </a>
-                            </ng-template>
+                        <a mat-stroked-button *ngIf="selected_portal_id!=0;else noportalCSVPages"
+                            href="{{environment.environment_host+'/gapiv2/export_pages?extension=csv&days=now/y&portal='+selected_portal_id}}"
+                            target="_blank">CSV</a>
+                        <ng-template #noportalCSVPages>
+                            <a mat-stroked-button
+                                href="{{environment.environment_host+'/gapiv2/export_pages?extension=csv&days=now/y'}}"
+                                target="_blank"> CSV </a>
+                        </ng-template>
+                        <a mat-stroked-button *ngIf="selected_portal_id!=0;else noportalJSONPages"
+                            href="{{environment.environment_host+'/gapiv2/export_pages?extension=json&days=now/y&portal='+selected_portal_id}}"
+                            target="_blank">JSON</a>
+                        <ng-template #noportalJSONPages>
+                            <a mat-stroked-button
+                                href="{{environment.environment_host+'/gapiv2/export_pages?extension=json&days=now/y'}}"
+                                target="_blank"> JSON </a>
+                        </ng-template>
                     </li>
                     <li>
                         Navegadores utilizados (primer acceso):
-                        <a *ngIf="selected_portal_id!=0;else noportalCSVBrowsers" href="{{environment.environment_host+'/gapiv2/export_browsers?extension=csv&days=now/y&portal='+selected_portal_id}}"
-                        target="_blank">CSV</a>
-                            <ng-template #noportalCSVBrowsers>
-                                <a href="{{environment.environment_host+'/gapiv2/export_browsers?extension=csv&days=now/y'}}" target="_blank"> CSV </a>
-                            </ng-template>
-                        <a *ngIf="selected_portal_id!=0;else noportalJSONBrowsers" href="{{environment.environment_host+'/gapiv2/export_browsers?extension=json&days=now/y&portal='+selected_portal_id}}"
-                        target="_blank">JSON</a>
-                            <ng-template #noportalJSONBrowsers>
-                                <a href="{{environment.environment_host+'/gapiv2/export_browsers?extension=json&days=now/y'}}" target="_blank"> JSON </a>
-                            </ng-template>
+                        <a mat-stroked-button *ngIf="selected_portal_id!=0;else noportalCSVBrowsers"
+                            href="{{environment.environment_host+'/gapiv2/export_browsers?extension=csv&days=now/y&portal='+selected_portal_id}}"
+                            target="_blank">CSV</a>
+                        <ng-template #noportalCSVBrowsers>
+                            <a mat-stroked-button
+                                href="{{environment.environment_host+'/gapiv2/export_browsers?extension=csv&days=now/y'}}"
+                                target="_blank"> CSV </a>
+                        </ng-template>
+                        <a mat-stroked-button *ngIf="selected_portal_id!=0;else noportalJSONBrowsers"
+                            href="{{environment.environment_host+'/gapiv2/export_browsers?extension=json&days=now/y&portal='+selected_portal_id}}"
+                            target="_blank">JSON</a>
+                        <ng-template #noportalJSONBrowsers>
+                            <a mat-stroked-button
+                                href="{{environment.environment_host+'/gapiv2/export_browsers?extension=json&days=now/y'}}"
+                                target="_blank"> JSON </a>
+                        </ng-template>
                     </li>
                 </ul>
             </div>
             <div class="opendata-visor__content-right">
-                <a href="https://opendata.aragon.es/datos/catalogo/dataset/estadisticas-de-uso-de-los-portales-y-webs-mas-importantes-del-gobierno-de-aragon"
+                <a mat-stroked-button class="older_stats"
+                    href="https://opendata.aragon.es/datos/catalogo/dataset/estadisticas-de-uso-de-los-portales-y-webs-mas-importantes-del-gobierno-de-aragon"
                     target="_blank"><mat-icon> insert_chart_outlined</mat-icon> Estadísticas de años anteriores</a>
             </div>
         </div>
