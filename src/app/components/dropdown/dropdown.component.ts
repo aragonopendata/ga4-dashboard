@@ -22,8 +22,6 @@ export class DropdownComponent implements OnInit {
 
   ngOnInit() {
 
-    this.updateIframeHeight()
-
     this.getPortals();
   }
 
@@ -63,20 +61,6 @@ export class DropdownComponent implements OnInit {
 
   placeholderTextDate: string = '30 Días';
   placeholderTextPortal: string = 'Todos';
-
-
-
-  updateIframeHeight() {
-    var intervalId = setInterval(function () {
-      var iframeContainer: any = document.getElementsByClassName("embed-container")[0];
-      var iframe: any = document.getElementById("myiframe");
-      //iframeContainer.style.height = "300vh"
-      console.log(iframe.contentWindow);
-
-    }, 2000);
-
-
-  }
 
   changePortal(newPortal: any) {
     this.selectedPortal = newPortal.urlSnippet;
