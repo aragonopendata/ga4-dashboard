@@ -280,8 +280,8 @@
         margin: auto;
         margin-top: 2em;
 
-        width: 65.5%;
-        transform: translateX(2.8%);
+        width: 100%
+        transform: translateX(0%);
     }
 
     .embed-container {
@@ -316,9 +316,9 @@
 
     .main,
     .opendata-visor {
-        max-width: 1347px;
-        width: 66%;
-        transform: translateX(3%);
+        max-width: 100%;
+        width: 100%;
+        transform: translateX(0%);
     }
 
 
