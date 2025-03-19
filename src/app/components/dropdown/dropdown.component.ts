@@ -39,7 +39,7 @@ export class DropdownComponent implements OnInit {
 
 
     data.forEach((element: any) => {
-      if (element.status == 1 && element.type == 'analytics_GA4') {
+      if (element.status == 1 && element.type == 'analytics') {
         this.portals.push({ value: element.portal_name, iframeUrl: `${this.urlHead}('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(view:${element.view}),type:phrase),query:(match_phrase:(view:${element.view})))${this.urlBody}${this.selectedDate}${this.urlTail}`, urlSnippet: `('$state':(store:globalState),meta:(alias:!n,disabled:!f,index:'6dd1cc00-d39f-11ed-91b6-b3f4561f6def',key:portal,negate:!f,params:(query:${element.url}),type:phrase),query:(match_phrase:(portal:${element.url})))` });
         this.all_portals_id.push(element.id_logstash)
       }
