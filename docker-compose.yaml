@@ -1,0 +1,19 @@
+services:
+  analytics_dashboard:
+    networks:
+      - infraestructura_opendata
+    hostname: analytics-dashboard
+    build:
+      context: .
+      args:
+        BUILD_CONFIGURATION: ${BUILD_CONFIGURATION:-production}
+        BASE_HREF: ${BASE_HREF:-/servicios/dashboardanalytics/}
+    restart: always
+
+    expose:
+      - "80"
+
+
+networks:
+  infraestructura_opendata:
+    external: true
