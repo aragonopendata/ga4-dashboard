@@ -1,5 +1,5 @@
 # Build stage
-FROM node:18.16.0-bullseye AS build
+FROM node:20.19.2-bookworm AS build
 
 # Build arguments for environment configuration
 ARG BUILD_CONFIGURATION=production
@@ -11,17 +11,17 @@ LABEL version="0.1"
 LABEL description="Analytics v4 dashboard"
 
 # Update Ubuntu Software repository
-RUN apt update
+# RUN apt update
 RUN apt -y install curl
 
 # Install Angular CLI
-RUN npm install -g @angular/cli@16.0.1
+RUN npm install -g @angular/cli@19
 
 WORKDIR /app
 
 # Copy package files first for better Docker layer caching
 COPY package*.json ./
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 # Copy source code
 COPY . .

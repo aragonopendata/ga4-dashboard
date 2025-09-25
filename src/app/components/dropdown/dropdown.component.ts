@@ -10,7 +10,8 @@ interface URLBuilder {
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  styleUrls: ['./dropdown.component.scss'],
+  standalone: false
 })
 
 
